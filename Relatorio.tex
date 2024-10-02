@@ -1,0 +1,71 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{left=25mm,right=25mm,top=25mm,bottom=25mm}
+
+\title{Relatório - Sistema de Pedidos para Lanchonete}
+\author{Gabriel da Silva Reboli}
+\date{CC4M}
+
+\begin{document}
+
+\maketitle
+
+\section{Introdução}
+Este relatório descreve o desenvolvimento de um sistema de gerenciamento de pedidos para uma lanchonete fictícia. O sistema foi desenvolvido com o objetivo de permitir a personalização de hambúrgueres utilizando o padrão de projeto \textit{Decorator} e a notificação de observadores por meio do padrão \textit{Observer}. Além disso, o cliente pode adicionar itens extras ao pedido, como bebidas e sobremesas.
+
+\section{Padrões de Projeto Utilizados}
+Dois padrões de projeto foram implementados neste sistema: \textit{Decorator} e \textit{Observer}. Cada um foi utilizado de acordo com as necessidades descritas no enunciado do trabalho.
+
+\subsection{Decorator}
+O padrão \textit{Decorator} foi aplicado para permitir a personalização dos hambúrgueres. O hambúrguer base é uma instância de uma classe que implementa a interface \texttt{IHamburguer}. Ingredientes adicionais, como bacon, queijo, alface e tomate, foram implementados como decoradores que adicionam uma nova descrição e custo ao hambúrguer base.
+
+\begin{itemize}
+    \item A interface \texttt{IHamburguer} define dois métodos principais: \texttt{GetDescricao()} e \texttt{GetCusto()}.
+    \item A classe \texttt{HamburguerSimples} implementa a interface \texttt{IHamburguer} e representa o hambúrguer básico.
+    \item As classes de ingredientes, como \texttt{Bacon}, \texttt{Queijo}, \texttt{Alface}, e \texttt{Tomate}, implementam o padrão \textit{Decorator}, envolvendo o hambúrguer base e adicionando novos comportamentos.
+\end{itemize}
+
+A principal vantagem do padrão \textit{Decorator} é a flexibilidade para adicionar novos ingredientes ao hambúrguer sem modificar a estrutura básica do objeto, permitindo personalizações dinâmicas.
+
+\subsection{Observer}
+O padrão \textit{Observer} foi utilizado para notificar automaticamente a equipe da lanchonete sempre que um pedido é feito ou atualizado. Existem dois observadores principais:
+
+\begin{itemize}
+    \item \texttt{MonitorProducao} é responsável por acompanhar os pedidos em produção.
+    \item \texttt{MonitorMontagem} é responsável por acompanhar quando um pedido está pronto para montagem.
+\end{itemize}
+
+A classe \texttt{Pedido} funciona como o \textit{Sujeito}, mantendo uma lista de observadores e os notificando sempre que há uma mudança no pedido. Os observadores são atualizados automaticamente, recebendo informações sobre o estado atual do pedido e os ingredientes selecionados.
+
+\section{Estrutura do Código}
+A estrutura do código foi organizada de forma a facilitar a adição de novos ingredientes e o controle do fluxo do pedido. Segue uma breve explicação das principais classes e interfaces:
+
+\begin{itemize}
+    \item \texttt{IHamburguer}: Interface que define a estrutura dos hambúrgueres e decoradores.
+    \item \texttt{HamburguerSimples}: Implementa a interface \texttt{IHamburguer}, representando o hambúrguer básico.
+    \item \texttt{IngredienteDecorator}: Classe abstrata que implementa a interface \texttt{IHamburguer} e serve de base para todos os decoradores.
+    \item \texttt{Bacon}, \texttt{Queijo}, \texttt{Alface}, \texttt{Tomate}: Decoradores concretos que adicionam ingredientes ao hambúrguer.
+    \item \texttt{Pedido}: Classe que representa o pedido do cliente e implementa o padrão \textit{Observer}, notificando os observadores conforme o status do pedido muda.
+    \item \texttt{MonitorProducao} e \texttt{MonitorMontagem}: Observadores que são notificados sobre mudanças no pedido, como ingredientes escolhidos e status de produção.
+    \item \texttt{ItemPedido}: Representa itens adicionais do pedido (como bebidas e sobremesas).
+\end{itemize}
+
+\section{Possíveis Melhorias}
+Embora o sistema atenda às especificações propostas, algumas melhorias poderiam ser implementadas para aumentar sua robustez e flexibilidade:
+
+\begin{itemize}
+    \item \textbf{Persistência de dados}: Implementar a funcionalidade de salvar e carregar pedidos a partir de um arquivo (JSON ou banco de dados), para permitir que os pedidos sejam reabertos ou arquivados.
+    \item \textbf{Descontos e promoções}: Adicionar a funcionalidade de aplicar descontos ou promoções ao pedido.
+    \item \textbf{Interface Gráfica}: Desenvolver uma interface gráfica (GUI) para facilitar a interação do cliente com o sistema, deixando de ser apenas uma aplicação de console.
+\end{itemize}
+
+\section{Conclusão}
+O sistema de pedidos para a lanchonete foi desenvolvido com sucesso, utilizando os padrões de projeto \textit{Decorator} e \textit{Observer} conforme especificado. A aplicação permite que o cliente personalize seu hambúrguer dinamicamente e, ao mesmo tempo, mantém a equipe da lanchonete informada sobre o progresso dos pedidos em tempo real. O código foi estruturado de maneira modular, facilitando futuras expansões e melhorias.
+
+\end{document}
