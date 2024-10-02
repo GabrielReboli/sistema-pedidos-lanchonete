@@ -34,8 +34,4 @@ O padrão **Observer** é utilizado para notificar os monitores da produção e 
 - **MonitorProducao e MonitorMontagem**: Observadores que recebem atualizações sobre o status do pedido.
 - **ItemPedido**: Representa itens adicionais como refrigerantes, batatas fritas, e sobremesas.
 
-## Como Executar o Projeto
 
-1. Clone o repositório para sua máquina local:
-   ```bash
-   git clone https://github.com/SeuUsuario/sistema-pedidos-lanchonete.git
